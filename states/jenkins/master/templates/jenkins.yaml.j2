@@ -1,0 +1,24 @@
+jenkins:
+
+  security:
+    password:
+      access:
+        - name: jjb-updater
+          email: jjb@example.com
+          password: {{ jjb_password }}
+          full_name: JJB Updater
+          permissions:
+            - job
+
+    cli_user:
+      name: cli_admin
+      public_key: {{ cli_user_pub_key }}
+      password: {{ cli_user_password }}
+
+  credentials:
+    password:
+    - scope: global
+      id: jjb-updater
+      username: jjb-updater
+      password: {{ jjb_password }}
+      description: Credentials to JJB updater user required for automated JJB update job.

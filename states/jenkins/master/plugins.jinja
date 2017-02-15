@@ -1,0 +1,117 @@
+# Contains list of plugins to be installed.
+#
+# Each plugin is defined by dictionary
+# {
+#   'name': 'short-name',
+#   'version': '0.0.1',
+#   'url': 'http://example.com/full/path/to/plugin.hpi', # optional
+# }
+#
+# To obtain list of plugins from working Jenkins installation one can use the following script:
+#
+###################################################################################################
+# #!/usr/bin/env python
+#
+# import argparse
+# import ConfigParser
+# import jenkins
+# import pprint
+# import toposort
+#
+# parser = argparse.ArgumentParser()
+# parser.add_argument("-c", "--conf", required=True,
+#                     help="Path to jenkins-job-builder config file")
+# args = parser.parse_args()
+#
+# config = ConfigParser.RawConfigParser()
+# config.read(args.conf)
+#
+# jenkinsurl = config.get('jenkins', 'url')
+# username = config.get('jenkins', 'user')
+# password = config.get('jenkins', 'password')
+#
+# j = jenkins.Jenkins(jenkinsurl, username, password)
+#
+# data = j.get_plugins()
+#
+# graph = {}
+# for (key, long_key) in data.keys():
+#   graph[key] = set([ item['shortName'] for item in data[key]['dependencies']])
+#
+# sorted_list = toposort.toposort_flatten(graph)
+#
+# plugins = []
+#
+# for plugin in sorted_list:
+#   plugins.append(
+#     {
+#       'name': plugin,
+#       'version': str(data[plugin]['version']),
+#     }
+#   )
+#
+# pprint.pprint(plugins)
+#
+###################################################################################################
+
+{% set plugins = [
+ {'name': 'bouncycastle-api', 'version': '2.16.0'},
+ {'name': 'StashBranchParameter', 'version': '0.2.0'},
+ {'name': 'ace-editor', 'version': '1.1'},
+ {'name': 'credentials', 'version': '2.1.10'},
+ {'name': 'external-monitor-job', 'version': '1.6'},
+ {'name': 'gradle', 'version': '1.25'},
+ {'name': 'icon-shim', 'version': '2.0.3'},
+ {'name': 'javadoc', 'version': '1.4'},
+ {'name': 'jquery-detached', 'version': '1.2.1'},
+ {'name': 'scm-api', 'version': '1.3'},
+ {'name': 'script-security', 'version': '1.25'},
+ {'name': 'structs', 'version': '1.5'},
+ {'name': 'token-macro', 'version': '2.0'},
+ {'name': 'windows-slaves', 'version': '1.2'},
+ {'name': 'ant', 'version': '1.4'},
+ {'name': 'cloudbees-folder', 'version': '5.15'},
+ {'name': 'junit', 'version': '1.19'},
+ {'name': 'plain-credentials', 'version': '1.3'},
+ {'name': 'ssh-credentials', 'version': '1.12'},
+ {'name': 'workflow-step-api', 'version': '2.6'},
+ {'name': 'antisamy-markup-formatter', 'version': '1.5'},
+ {'name': 'branch-api', 'version': '1.11.1'},
+ {'name': 'config-file-provider', 'version': '2.15.1'},
+ {'name': 'credentials-binding', 'version': '1.10'},
+ {'name': 'display-url-api', 'version': '0.5'},
+ {'name': 'git-client', 'version': '2.2.0'},
+ {'name': 'matrix-auth', 'version': '1.4'},
+ {'name': 'matrix-project', 'version': '1.7.1'},
+ {'name': 'pam-auth', 'version': '1.3'},
+ {'name': 'timestamper', 'version': '1.8.7'},
+ {'name': 'workflow-api', 'version': '2.8'},
+ {'name': 'workflow-scm-step', 'version': '2.3'},
+ {'name': 'description-setter', 'version': '1.10'},
+ {'name': 'mailer', 'version': '1.18'},
+ {'name': 'mercurial', 'version': '1.57'},
+ {'name': 'multi-slave-config-plugin', 'version': '1.2.0'},
+ {'name': 'slack', 'version': '2.1'},
+ {'name': 'workflow-support', 'version': '2.11'},
+ {'name': 'git', 'version': '3.0.1'},
+ {'name': 'ivy', 'version': '1.26'},
+ {'name': 'ldap', 'version': '1.13'},
+ {'name': 'maven-plugin', 'version': '2.14'},
+ {'name': 'rebuild', 'version': '1.25'},
+ {'name': 'workflow-cps', 'version': '2.23'},
+ {'name': 'analysis-core', 'version': '1.82'},
+ {'name': 'anything-goes-formatter', 'version': '1.0'},
+ {'name': 'artifactory', 'version': '2.8.2'},
+ {'name': 'build-timeout', 'version': '1.18'},
+ {'name': 'cloudbees-bitbucket-branch-source', 'version': '1.9'},
+ {'name': 'greenballs', 'version': '1.15'},
+ {'name': 'jobConfigHistory', 'version': '2.15'},
+ {'name': 'jquery', 'version': '1.11.2-0'},
+ {'name': 'simple-theme-plugin', 'version': '0.3'},
+ {'name': 'stash-pullrequest-builder', 'version': '1.7.0'},
+ {'name': 'stashNotifier', 'version': '1.11.4'},
+ {'name': 'checkstyle', 'version': '3.47'},
+ {'name': 'findbugs', 'version': '4.69'},
+]
+%}
+
